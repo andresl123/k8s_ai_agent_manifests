@@ -4,6 +4,7 @@ metadata:
   name: k8s-ai-agent-pvc
   namespace: k8s-ai-agent
 spec:
+  storageClassName: manual
   accessModes:
     - ReadWriteOnce
   resources:
