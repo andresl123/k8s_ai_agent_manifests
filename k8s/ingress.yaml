@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: k8s-ai-agent
+  namespace: k8s-ai-agent
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-http01
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect-port: "8443"
+    nginx.ingress.kubernetes.io/proxy-body-size: "100m"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - asl.serveblog.net
+      secretName: k8s-ai-agent-tls
+  rules:
+    - host: asl.serveblog.net
+      http:
+        paths:
+          - path: /k8s-ai-agent
+            pathType: Prefix
+            backend:
+              service:
+                name: k8s-ai-agent
+                port:
+                  number: 80
