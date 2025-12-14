@@ -19,7 +19,7 @@ spec:
         fsGroup: 10001
       containers:
         - name: k8s-ai-agent
-          image: andresl123/k8s-ai-agent:sha-1c8f0eb
+          image: andresl123/k8s-ai-agent:sha-64c84da
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
